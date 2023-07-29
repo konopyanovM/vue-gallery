@@ -1,6 +1,8 @@
 <template>
   <the-header></the-header>
-  <router-view />
+  <main class="main">
+    <router-view />
+  </main>
 </template>
 
 <script lang="ts" setup>
@@ -14,4 +16,10 @@ import TheHeader from "./components/TheHeader.vue";
 @include normalize();
 // Import global styles
 @import "@/scss";
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
 </style>

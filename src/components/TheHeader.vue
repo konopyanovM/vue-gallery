@@ -35,7 +35,7 @@ import AppIcon from "./AppIcon.vue";
 @use "@/scss/utils";
 
 .header {
-  height: 80px;
+  min-height: 80px;
   background-color: utils.$black;
 
   &__body {
