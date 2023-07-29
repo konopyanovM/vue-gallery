@@ -19,10 +19,15 @@ const props = defineProps<{
   background-repeat: no-repeat;
   background-position: center;
 
+  // Black icons
   &-download {
     background-image: url("@/assets/images/icons/download.svg");
   }
+  &-search {
+    background-image: url("@/assets/images/icons/search.svg");
+  }
 
+  // White icons
   &-heart-white {
     background-image: url("@/assets/images/icons/heart-white.svg");
   }
