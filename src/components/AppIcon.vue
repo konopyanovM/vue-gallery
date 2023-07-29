@@ -26,6 +26,9 @@ const props = defineProps<{
   &-search {
     background-image: url("@/assets/images/icons/search.svg");
   }
+  &-heart {
+    background-image: url("@/assets/images/icons/heart.svg");
+  }
 
   // White icons
   &-heart-white {

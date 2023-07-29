@@ -1,18 +1,18 @@
+import { AxiosResponse } from "axios";
 import { unsplashAxios } from "./axios";
-import { getRandomPhotosParams, getRandomPhotosResponse } from "./types";
+import { getRandomPhotosParams, PhotoData } from "./types";
 
 export const UnsplashService = {
-  get() {
-    // return unsplashAxios.get("/photos/random/");
-    return "";
-  },
   getRandomPhotos(
     params: getRandomPhotosParams = {
       count: 9,
     }
-  ): Promise<getRandomPhotosResponse> {
+  ): Promise<AxiosResponse<PhotoData[]>> {
     return unsplashAxios.get("/photos/random/", {
       params,
     });
+  },
+  getPhotoById(id: string): Promise<AxiosResponse<PhotoData>> {
+    return unsplashAxios.get(`/photos/${id}`);
   },
 };

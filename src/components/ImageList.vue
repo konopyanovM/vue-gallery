@@ -6,7 +6,11 @@
         :key="imageItem.id"
         class="image-list__item"
       >
-        <img :src="imageItem.urls.regular" :alt="imageItem.alt_description" />
+        <router-link
+          :to="{ name: 'Picture Info', params: { id: imageItem.id } }"
+        >
+          <img :src="imageItem.urls.regular" :alt="imageItem.alt_description" />
+        </router-link>
       </li>
     </ul>
   </div>

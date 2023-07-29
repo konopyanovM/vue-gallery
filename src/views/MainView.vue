@@ -19,10 +19,10 @@ import { PhotoData } from "@/services/types";
 const images: Ref<PhotoData[]> = ref([]);
 
 onMounted(() => {
-  // UnsplashService.getRandomPhotos().then((res) => {
-  //   images.value = res.data;
-  //   console.log(res);
-  // });
+  UnsplashService.getRandomPhotos().then((res) => {
+    images.value = res.data;
+    console.log(res);
+  });
 });
 </script>
 

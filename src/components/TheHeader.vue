@@ -2,19 +2,19 @@
   <header class="header">
     <div class="container">
       <div class="header__body">
-        <div class="header__logo">
+        <router-link class="header__logo" :to="{ name: 'Main' }">
           <img src="@/assets/images/logo/logo.svg" alt="logo" />
-        </div>
+        </router-link>
         <nav class="header__nav">
           <ul class="nav-list">
             <li class="nav-list__item">
-              <router-link to="/">
+              <router-link :to="{ name: 'Main' }">
                 <app-icon icon="search-white"></app-icon>
                 Поиск
               </router-link>
             </li>
             <li class="nav-list__item">
-              <router-link to="/">
+              <router-link :to="{ name: 'Main' }">
                 <app-icon icon="heart-white"></app-icon>
                 Избранное
               </router-link>

@@ -3,13 +3,6 @@ export interface getRandomPhotosParams {
 }
 
 // This interface is not full
-export interface getRandomPhotosResponse {
-  data: PhotoData[];
-  status: number;
-  statusText: string;
-}
-
-// This interface is not full
 export interface PhotoData {
   alt_description: string;
   id: string;
