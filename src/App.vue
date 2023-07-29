@@ -1,6 +1,11 @@
 <template>
+  <the-header></the-header>
   <router-view />
 </template>
+
+<script lang="ts" setup>
+import TheHeader from "./components/TheHeader.vue";
+</script>
 
 <!-- Global styles -->
 <style lang="scss">
@@ -8,5 +13,5 @@
 @import "normalize-scss";
 @include normalize();
 // Import global styles
-@import "./scss";
+@import "@/scss";
 </style>
