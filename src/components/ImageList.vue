@@ -25,13 +25,21 @@ const props = defineProps<{
 </script>
 
 <style lang="scss" scoped>
+@use "@/scss/utils";
+
 .image-list {
   max-width: 100%;
   display: grid;
   gap: 30px;
 
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+
+  @include utils.breakpoint(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include utils.breakpoint(sm) {
+    grid-template-columns: 1fr;
+  }
 
   &__item {
     position: relative;

@@ -7,16 +7,16 @@
         </router-link>
         <nav class="header__nav">
           <ul class="nav-list">
-            <li class="nav-list__item">
+            <li class="nav-list__item" v-if="route.path !== '/'">
               <router-link :to="{ name: 'Main' }">
                 <app-icon icon="search-white"></app-icon>
-                Поиск
+                <span class="nav-list__item-text"> Поиск </span>
               </router-link>
             </li>
             <li class="nav-list__item">
               <router-link :to="{ name: 'Main' }">
                 <app-icon icon="heart-white"></app-icon>
-                Избранное
+                <span class="nav-list__item-text"> Избранное </span>
               </router-link>
             </li>
           </ul>
@@ -27,16 +27,41 @@
 </template>
 
 <script lang="ts" setup>
-import AppButton from "./AppButton.vue";
+import { useRoute } from "vue-router";
 import AppIcon from "./AppIcon.vue";
+
+const route = useRoute();
 </script>
 
 <style lang="scss" scoped>
 @use "@/scss/utils";
 
 .header {
-  min-height: 80px;
+  min-height: 140px;
   background-color: utils.$black;
+
+  @include utils.breakpoint(lg) {
+    min-height: 120px;
+  }
+  @include utils.breakpoint(md) {
+    min-height: 100px;
+  }
+  @include utils.breakpoint(sm) {
+    min-height: 80px;
+  }
+
+  &__logo {
+    display: block;
+    img {
+      width: 100%;
+    }
+    @include utils.breakpoint(md) {
+      max-width: 100px;
+    }
+    @include utils.breakpoint(sm) {
+      max-width: 84px;
+    }
+  }
 
   &__body {
     height: 100%;
@@ -60,6 +85,12 @@ import AppIcon from "./AppIcon.vue";
 
       &:hover {
         opacity: 0.8;
+      }
+
+      &-text {
+        @include utils.breakpoint(md) {
+          display: none;
+        }
       }
     }
   }

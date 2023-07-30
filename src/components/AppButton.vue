@@ -51,7 +51,8 @@ const onClick = (): void => {
 
   // Types
   &-square {
-    padding: 12px;
+    width: 55px;
+    padding: 0;
     aspect-ratio: 1 / 1;
   }
 

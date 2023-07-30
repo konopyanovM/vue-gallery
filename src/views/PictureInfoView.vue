@@ -14,11 +14,19 @@
           </div>
         </div>
         <div class="picture-info-header__button-group">
-          <app-button type="square" color="white">
+          <app-button
+            type="square"
+            color="white"
+            class="picture-info-header__button"
+          >
             <app-icon icon="heart"></app-icon>
           </app-button>
-          <app-button @click="downloadPhoto">
-            <app-icon icon="download"></app-icon>Download
+          <app-button
+            @click="downloadPhoto"
+            class="picture-info-header__button"
+          >
+            <app-icon icon="download"></app-icon
+            ><span class="picture-info-header__button-text">Download</span>
           </app-button>
         </div>
       </div>
@@ -78,10 +86,18 @@ onMounted(() => {
     display: flex;
     justify-content: space-between;
 
+    gap: 10px;
+
+    flex-wrap: wrap;
+
     &__user-info {
       display: flex;
       gap: 10px;
       color: utils.$white;
+
+      @include utils.breakpoint(sm) {
+        gap: 5px;
+      }
     }
 
     &__avatar {
@@ -93,14 +109,37 @@ onMounted(() => {
     }
     &__title {
       font-size: 30px;
+
+      @include utils.breakpoint(sm) {
+        font-size: 20px;
+      }
     }
     &__subtitle {
       font-size: 18px;
+
+      @include utils.breakpoint(sm) {
+        font-size: 14px;
+      }
     }
 
     &__button-group {
       display: flex;
       gap: 20px;
+
+      @include utils.breakpoint(sm) {
+        gap: 10px;
+      }
+    }
+
+    @include utils.breakpoint(sm) {
+      &__button {
+        width: 55px;
+        padding: 0;
+        aspect-ratio: 1/1;
+        &-text {
+          display: none;
+        }
+      }
     }
   }
   &-body {
@@ -126,6 +165,14 @@ onMounted(() => {
     z-index: -1;
 
     filter: blur(4px) grayscale(90%);
+
+    @include utils.breakpoint(md) {
+      top: -60%;
+    }
+    @include utils.breakpoint(sm) {
+      top: -50%;
+    }
+
     img {
       width: 100%;
     }

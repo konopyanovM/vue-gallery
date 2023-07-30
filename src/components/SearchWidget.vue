@@ -23,6 +23,8 @@ const searchImages = (terms: string) => {
 </script>
 
 <style lang="scss" scoped>
+@use "@/scss/utils";
+
 .search {
   position: relative;
   height: 250px;
@@ -37,6 +39,16 @@ const searchImages = (terms: string) => {
 
   &__input-group {
     min-width: 866px;
+
+    @include utils.breakpoint(lg) {
+      min-width: 700px;
+    }
+    @include utils.breakpoint(md) {
+      min-width: 500px;
+    }
+    @include utils.breakpoint(sm) {
+      min-width: 100%;
+    }
   }
 
   &__background-image {

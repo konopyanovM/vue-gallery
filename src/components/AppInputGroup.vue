@@ -55,12 +55,28 @@ const onClick = (): void => {
     &:focus-visible {
       outline: none;
     }
+
+    @include utils.breakpoint(md) {
+      padding: 14px 20px;
+      font-size: 20px;
+    }
+    @include utils.breakpoint(sm) {
+      width: 100%;
+      font-size: 16px;
+    }
   }
 
   .input-group__suff {
     padding: 20px 34px;
     background-color: transparent;
     border: none;
+
+    @include utils.breakpoint(lg) {
+      padding: 14px 20px;
+    }
+    @include utils.breakpoint(sm) {
+      padding: 6px 10px;
+    }
 
     cursor: pointer;
     &:focus-visible {
