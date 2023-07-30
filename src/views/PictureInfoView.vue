@@ -52,7 +52,10 @@ const photoId = route.params.id as string;
 const data: Ref<PhotoData | null> = ref(null);
 
 const downloadPhoto = (): void => {
-  console.log();
+  UnsplashService.downloadPhoto(
+    data.value?.id as string,
+    data.value?.alt_description
+  );
 };
 
 onMounted(() => {

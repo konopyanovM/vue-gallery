@@ -42,8 +42,15 @@ const props = defineProps<{
     // Make block square
     aspect-ratio: 1 / 1;
 
+    transition: transform ease 0.25s;
+
+    &:hover {
+      transform: scale(1.025);
+    }
+
     img {
       position: absolute;
+      object-fit: cover;
 
       width: 100%;
       height: 100%;

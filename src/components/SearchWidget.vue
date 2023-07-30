@@ -2,7 +2,7 @@
   <div class="search">
     <div class="container">
       <div class="search__body">
-        <app-input-group>
+        <app-input-group placeholder="Search">
           <app-icon icon="search"></app-icon>
         </app-input-group>
       </div>

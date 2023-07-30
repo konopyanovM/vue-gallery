@@ -8,6 +8,7 @@ export interface PhotoData {
   id: string;
   urls: Urls;
   user: User;
+  links: Links;
 }
 
 interface Urls {
@@ -29,4 +30,11 @@ interface ProfileImage {
   large: string;
   medium: string;
   small: string;
+}
+
+interface Links {
+  self: string;
+  html: string;
+  download: string;
+  download_location: string;
 }

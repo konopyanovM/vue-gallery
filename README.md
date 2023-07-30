@@ -34,3 +34,4 @@ fonts
 lang
 pixel perfectr
 button directive
+download photo

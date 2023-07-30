@@ -1,13 +1,17 @@
 <template>
   <div class="input-group search__input-group">
-    <input type="text" />
+    <input type="text" :placeholder="props.placeholder" />
     <button class="input-group__suff">
       <slot></slot>
     </button>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const props = defineProps<{
+  placeholder?: string;
+}>();
+</script>
 
 <style lang="scss" scoped>
 @use "@/scss/utils";

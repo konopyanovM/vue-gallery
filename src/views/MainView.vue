@@ -28,7 +28,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .image-list-wrapper {
-  margin-top: 110px;
+  margin: 110px 0;
 }
 
 .loader-wrapper {
