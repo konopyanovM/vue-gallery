@@ -1,5 +1,15 @@
-export interface getRandomPhotosParams {
-  count: number;
+export interface GetRandomPhotosParams {
+  count?: number;
+}
+
+export interface SearchPhotosParams {
+  query: string;
+  per_page?: number;
+}
+
+export interface ErrorResponse {
+  title: string;
+  subtitle: string;
 }
 
 // This interface is not full

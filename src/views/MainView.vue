@@ -1,8 +1,13 @@
 <template>
-  <search-widget></search-widget>
+  <search-widget @search="onSearch"></search-widget>
   <div class="image-list-wrapper" v-if="images.length">
     <image-list :images="images"></image-list>
   </div>
+  <app-error
+    v-else-if="error"
+    :title="error.title"
+    :subtitle="error.subtitle"
+  ></app-error>
   <div class="loader-wrapper" v-else>
     <app-loader></app-loader>
   </div>
@@ -14,15 +19,28 @@ import ImageList from "@/components/ImageList.vue";
 import AppLoader from "@/components/AppLoader.vue";
 import { UnsplashService } from "../services/unspalsh.service";
 import { onMounted, Ref, ref } from "vue";
-import { PhotoData } from "@/services/types";
+import { ErrorResponse, PhotoData } from "@/services/types";
+import AppError from "@/components/AppError.vue";
 
 const images: Ref<PhotoData[]> = ref([]);
+const error: Ref<ErrorResponse | null> = ref(null);
+
+const onSearch = (searchTerms: string) => {
+  UnsplashService.searchPhotos({
+    query: searchTerms,
+    per_page: 9,
+  }).then((res) => {
+    images.value = [];
+    images.value = res.data.results;
+  });
+};
 
 onMounted(() => {
-  UnsplashService.getRandomPhotos().then((res) => {
-    images.value = res.data;
-    console.log(res);
-  });
+  UnsplashService.getRandomPhotos()
+    .then((res) => {
+      images.value = res.data;
+    })
+    .catch((err) => (error.value = err));
 });
 </script>
 

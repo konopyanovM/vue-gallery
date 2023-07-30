@@ -1,16 +1,30 @@
 <template>
   <div class="input-group search__input-group">
-    <input type="text" :placeholder="props.placeholder" />
-    <button class="input-group__suff">
+    <input
+      type="text"
+      :placeholder="props.placeholder"
+      v-model="searchTerm"
+      @keyup.enter="onClick"
+    />
+    <button class="input-group__suff" @click="onClick">
       <slot></slot>
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
+import { Ref, ref } from "vue";
+
 const props = defineProps<{
   placeholder?: string;
 }>();
+
+const emit = defineEmits(["click"]);
+const searchTerm: Ref<string> = ref("");
+
+const onClick = (): void => {
+  emit("click", searchTerm.value);
+};
 </script>
 
 <style lang="scss" scoped>

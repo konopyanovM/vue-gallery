@@ -2,7 +2,7 @@
   <div class="search">
     <div class="container">
       <div class="search__body">
-        <app-input-group placeholder="Search">
+        <app-input-group placeholder="Search" @click="searchImages">
           <app-icon icon="search"></app-icon>
         </app-input-group>
       </div>
@@ -14,6 +14,12 @@
 <script setup lang="ts">
 import AppIcon from "./AppIcon.vue";
 import AppInputGroup from "./AppInputGroup.vue";
+
+const emit = defineEmits(["search"]);
+
+const searchImages = (terms: string) => {
+  emit("search", terms);
+};
 </script>
 
 <style lang="scss" scoped>

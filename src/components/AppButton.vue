@@ -1,7 +1,7 @@
 <template>
   <button
     :class="`button ${typeClass} ${themeClass} ${colorClass}`"
-    @click="click"
+    @click="onClick"
   >
     <slot></slot>
   </button>
@@ -20,7 +20,7 @@ const colorClass = props.color ? `button-${props.color}` : "button-primary";
 
 const emit = defineEmits(["click"]);
 
-const click = () => {
+const onClick = (): void => {
   emit("click");
 };
 </script>
