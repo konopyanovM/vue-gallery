@@ -13,8 +13,16 @@ export const FavoritesService = {
   has(id: string): boolean {
     return favorites.has(id);
   },
+  get(): string[] {
+    // Filter for delete empty strings
+    return toArray(favorites).filter((item) => item);
+  },
 };
 
-const toString = (set: Set<any>): string => {
+const toString = (set: Set<string>): string => {
   return Array.from(set).join(",");
+};
+
+const toArray = (set: Set<string>): string[] => {
+  return Array.from(set);
 };

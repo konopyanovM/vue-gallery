@@ -162,6 +162,10 @@ onMounted(() => {
 
       box-shadow: 0 4px 50px rgba(utils.$black, 0.5);
 
+      @include utils.breakpoint(md) {
+        box-shadow: none;
+      }
+
       img {
         width: 100%;
         height: 100%;
@@ -170,18 +174,18 @@ onMounted(() => {
   }
   &__background {
     position: absolute;
-    top: -75%;
+    top: -80%;
     left: -10px;
     right: -10px;
     z-index: -1;
 
     filter: blur(4px) grayscale(90%);
 
-    @include utils.breakpoint(md) {
-      top: -60%;
+    @include utils.breakpoint(lg) {
+      top: -70%;
     }
-    @include utils.breakpoint(sm) {
-      top: -50%;
+    @include utils.breakpoint(md) {
+      display: none;
     }
 
     img {

@@ -1,7 +1,7 @@
 <template>
   <search-widget @search="onSearch"></search-widget>
   <div class="image-list-wrapper" v-if="images.length">
-    <image-list :images="images"></image-list>
+    <image-list :images="images" />
   </div>
   <app-error
     v-else-if="error"
