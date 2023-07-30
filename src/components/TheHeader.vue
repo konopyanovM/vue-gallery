@@ -14,7 +14,7 @@
               </router-link>
             </li>
             <li class="nav-list__item">
-              <router-link :to="{ name: 'Main' }">
+              <router-link :to="{ name: 'Favorites' }">
                 <app-icon icon="heart-white"></app-icon>
                 <span class="nav-list__item-text"> Избранное </span>
               </router-link>

@@ -8,15 +8,26 @@
 </template>
 
 <script setup lang="ts">
+import { Ref, ref, watch } from "vue";
+
 const props = defineProps<{
   type?: "square";
   theme?: "outline";
-  color?: "white" | "black";
+  color?: "white" | "black" | "pink";
 }>();
 
 const typeClass = props.type ? `button-${props.type}` : "";
 const themeClass = props.theme ? `button-${props.theme}` : "";
-const colorClass = props.color ? `button-${props.color}` : "button-primary";
+const colorClass: Ref<string> = ref(
+  props.color ? `button-${props.color}` : "button-primary"
+);
+
+watch(
+  () => props.color,
+  () => {
+    if (props.color) colorClass.value = `button-${props.color}`;
+  }
+);
 
 const emit = defineEmits(["click"]);
 
@@ -43,6 +54,8 @@ const onClick = (): void => {
 
   box-shadow: 0 0 4px rgba(utils.$black, 0.25);
 
+  transition: background-color ease 0.15s;
+
   cursor: pointer;
 
   &:hover {
@@ -66,6 +79,9 @@ const onClick = (): void => {
   }
   &-primary {
     background-color: utils.$primary;
+  }
+  &-pink {
+    background-color: utils.$pink;
   }
 }
 </style>

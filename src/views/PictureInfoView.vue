@@ -16,8 +16,9 @@
         <div class="picture-info-header__button-group">
           <app-button
             type="square"
-            color="white"
-            class="picture-info-header__button"
+            :color="isFavorite ? 'pink' : 'white'"
+            :class="isFavorite ? 'picture-info-header__button' : ''"
+            @click="toggleFavorite(data.id)"
           >
             <app-icon icon="heart"></app-icon>
           </app-button>
@@ -49,6 +50,7 @@
 import AppButton from "@/components/AppButton.vue";
 import AppIcon from "@/components/AppIcon.vue";
 import AppLoader from "@/components/AppLoader.vue";
+import { FavoritesService } from "@/services/favorites.service";
 import { PhotoData } from "@/services/types";
 import { onMounted, Ref, ref } from "vue";
 import { useRoute } from "vue-router";
@@ -58,6 +60,13 @@ const route = useRoute();
 
 const photoId = route.params.id as string;
 const data: Ref<PhotoData | null> = ref(null);
+
+let isFavorite: Ref<boolean> = ref(false);
+
+const toggleFavorite = (id: string): void => {
+  FavoritesService.toggle(id);
+  isFavorite.value = !isFavorite.value;
+};
 
 const downloadPhoto = (): void => {
   UnsplashService.downloadPhoto(
@@ -69,6 +78,8 @@ const downloadPhoto = (): void => {
 onMounted(() => {
   UnsplashService.getPhotoById(photoId).then((res) => {
     data.value = res.data;
+
+    isFavorite.value = FavoritesService.has(data.value.id);
   });
 });
 </script>
