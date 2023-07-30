@@ -41,6 +41,11 @@
       <img :src="data.urls.regular" :alt="data.alt_description" />
     </div>
   </div>
+  <app-error
+    v-else-if="error"
+    :title="error.title"
+    :subtitle="error.subtitle"
+  ></app-error>
   <div class="loader-wrapper" v-else>
     <app-loader></app-loader>
   </div>
@@ -51,7 +56,7 @@ import AppButton from "@/components/AppButton.vue";
 import AppIcon from "@/components/AppIcon.vue";
 import AppLoader from "@/components/AppLoader.vue";
 import { FavoritesService } from "@/services/favorites.service";
-import { PhotoData } from "@/services/types";
+import { ErrorResponse, PhotoData } from "@/services/types";
 import { onMounted, Ref, ref } from "vue";
 import { useRoute } from "vue-router";
 import { UnsplashService } from "../services/unspalsh.service";
@@ -60,6 +65,7 @@ const route = useRoute();
 
 const photoId = route.params.id as string;
 const data: Ref<PhotoData | null> = ref(null);
+const error: Ref<ErrorResponse | null> = ref(null);
 
 let isFavorite: Ref<boolean> = ref(false);
 
@@ -72,15 +78,17 @@ const downloadPhoto = (): void => {
   UnsplashService.downloadPhoto(
     data.value?.id as string,
     data.value?.alt_description
-  );
+  ).catch((err) => (error.value = err));
 };
 
 onMounted(() => {
-  UnsplashService.getPhotoById(photoId).then((res) => {
-    data.value = res.data;
+  UnsplashService.getPhotoById(photoId)
+    .then((res) => {
+      data.value = res.data;
 
-    isFavorite.value = FavoritesService.has(data.value.id);
-  });
+      isFavorite.value = FavoritesService.has(data.value.id);
+    })
+    .catch((err) => (error.value = err));
 });
 </script>
 

@@ -25,6 +25,8 @@ const props = defineProps<ErrorResponse>();
 
   &__title {
     font-size: 40px;
+
+    text-align: center;
   }
 
   &__subtitle {

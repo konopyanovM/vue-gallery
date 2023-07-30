@@ -31,10 +31,10 @@ export const UnsplashService = {
       query: "",
       per_page: 9,
     }
-  ) {
+  ): Promise<AxiosResponse> {
     return this.axios.get("/search/photos", { params });
   },
-  async downloadPhoto(id: string, name: string = id) {
+  async downloadPhoto(id: string, name: string = id): Promise<void> {
     const photoName: string = name;
 
     return this.axios
@@ -59,9 +59,6 @@ export const UnsplashService = {
 
         document.body.removeChild(anchorElement);
         window.URL.revokeObjectURL(href);
-      })
-      .catch((error) => {
-        console.log("error: ", error);
       });
   },
 };
